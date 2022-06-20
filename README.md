@@ -1,5 +1,5 @@
 # aks-debug-pod
-Privileged container, with host namespace and networking
+⚠️ Privileged container, with host namespace and networking
 
 ```bash
 kubectl apply -f debug.yaml
