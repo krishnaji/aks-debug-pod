@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debug
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: debug
+  template:
+    metadata:
+      labels:
+        app: debug
+    spec:
+      hostPID: true
+      hostNetwork: true
+      containers:
+      - name: debug
+        image: ubuntu
+        command: ["/bin/sh"]
+        args: ["-c", "sleep 30m"]
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: host-mount
+          mountPath: /host
+      volumes:
+      - name: host-mount
+        hostPath:
+            path: /
+
